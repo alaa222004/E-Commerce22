@@ -1,6 +1,8 @@
-@E_Commerce22_HostAddress = http://localhost:5189
+@E_Commerce22_HostAddress = http://localhost:5000
 
 GET {{E_Commerce22_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+GET {{E_Commerce22_HostAddress}}/api/Products
+Accept: application/json
