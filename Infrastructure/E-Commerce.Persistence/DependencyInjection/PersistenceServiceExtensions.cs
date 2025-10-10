@@ -1,7 +1,6 @@
 ﻿
-using E_Commerce.Persistence.Context;
-//using E_Commerce.Persistence.DbInitializers;
-using Microsoft.EntityFrameworkCore;
+using E_Commerce.Persistence.DbInitializers;
+using E_Commerce.Persistence.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,7 +15,8 @@ namespace E_Commerce.Persistence.DependencyInjection
                 var connection = configuration.GetConnectionString("SQLConnection");
                 options.UseSqlServer(connection);
             });
-            //services.AddScoped<IDbInitializer, DbInitializer>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IDbInitializer, DbInitializer>();
             return services;
         }
 
