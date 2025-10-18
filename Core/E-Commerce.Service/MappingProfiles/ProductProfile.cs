@@ -3,7 +3,7 @@
 
 using AutoMapper;
 using E_Commerce.Domain.Entities.Products;
-using E_Commerce.Shared.DataTransfererObjects;
+using E_Commerce.Shared.DataTransfererObjects.Products;
 using Microsoft.Extensions.Configuration;
 
 namespace E_Commerce.Service.MappingProfiles;

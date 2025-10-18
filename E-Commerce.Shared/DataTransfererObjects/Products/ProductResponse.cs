@@ -1,6 +1,4 @@
-﻿
-
-namespace E_Commerce.Shared.DataTransfererObjects;
+﻿namespace E_Commerce.Shared.DataTransfererObjects.Products;
 
 public record ProductResponse
 

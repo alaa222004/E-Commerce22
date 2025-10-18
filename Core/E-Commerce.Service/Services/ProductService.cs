@@ -3,6 +3,7 @@ using E_Commerce.Domain.Contracts;
 using E_Commerce.Domain.Entities.Products;
 using E_Commerce.ServiceAbstraction;
 using E_Commerce.Shared.DataTransfererObjects;
+using E_Commerce.Shared.DataTransfererObjects.Products;
 
 namespace E_Commerce.Service.Services;
 
@@ -17,14 +18,16 @@ internal class ProductService (IUnitOfWork unitOfWork,IMapper mapper)
      
     }
 
-    public Task<ProductResponse> GetByIdAsync(int Id, CancellationToken cancellationToken = default)
+    public async Task<ProductResponse> GetByIdAsync(int Id, CancellationToken cancellationToken = default)
     {
-        var product = unitOfWork.GetRepository<Product, int>()
+        var product =await unitOfWork.GetRepository<Product, int>()
           .GetByIdAsync(Id, cancellationToken);
-        return mapper.Map<Task<ProductResponse>>(product);
+        return mapper.Map<ProductResponse>(product);
     }
 
-    public async Task<IEnumerable<ProductResponse>> GetProductsAsync(CancellationToken cancellationToken = default)
+  
+
+    public async Task<IEnumerable<ProductResponse>> GetProductsAsync(ProductQueryParameters parameters, CancellationToken cancellationToken = default)
     {
 
         var products = await unitOfWork.GetRepository<Product, int>()
