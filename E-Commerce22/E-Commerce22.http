@@ -4,5 +4,5 @@ GET {{E_Commerce22_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
-GET {{E_Commerce22_HostAddress}}/api/Products
+GET {{E_Commerce22_HostAddress }}/api/BrandId=1&&typeid=2
 Accept: application/json
