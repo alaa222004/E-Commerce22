@@ -1,5 +1,6 @@
 ﻿
 
+using E_Commerce.Presentaion.API.Attributes;
 using E_Commerce.ServiceAbstraction;
 using E_Commerce.Shared.DataTransfererObjects;
 using E_Commerce.Shared.DataTransfererObjects.Products;
@@ -11,7 +12,7 @@ namespace E_Commerce.Presentaion.API.Controllers;
 public class ProductsController(IProductService service)
     : APIBaseController
 {
-
+    [RadisCash(5)]
     [HttpGet]
     public async Task<IActionResult> GetProducts([FromQuery] ProductQueryParameters parameters,CancellationToken cancellationToken)
     {
