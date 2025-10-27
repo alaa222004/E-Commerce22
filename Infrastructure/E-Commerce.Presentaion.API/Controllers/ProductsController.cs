@@ -4,6 +4,7 @@ using E_Commerce.Presentaion.API.Attributes;
 using E_Commerce.ServiceAbstraction;
 using E_Commerce.Shared.DataTransfererObjects;
 using E_Commerce.Shared.DataTransfererObjects.Products;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -24,6 +25,12 @@ public class ProductsController(IProductService service)
     {
         var response = await service.GetByIdAsync(id, cancellationToken);
         return Ok(response);
+        //    response is not null ? Ok(response) : NotFound();
+        //NotFound(new ProblemDetails{
+        //        Title="Product Not Found",
+        //        Status=StatusCodes.Status404NotFound,
+        //        Detail=$"Product with id {id} is not found"
+        //        });
     }
     [HttpGet("brands")]
     public async Task<IActionResult> GetBrands(CancellationToken cancellationToken)
