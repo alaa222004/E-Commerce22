@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using E_Commerce.Domain.Contracts;
 using E_Commerce.Domain.Entities.Products;
+using E_Commerce.Service.Exceptions;
 using E_Commerce.ServiceAbstraction;
 using E_Commerce.Shared.DataTransfererObjects;
 using E_Commerce.Shared.DataTransfererObjects.Products;
@@ -22,6 +23,9 @@ internal class ProductService (IUnitOfWork unitOfWork,IMapper mapper)
     {
         var product =await unitOfWork.GetRepository<Product, int>()
           .GetByIdAsync(Id, cancellationToken);
+        if (product == null)
+            throw new ProductNotFoundException(Id);
+
         return mapper.Map<ProductResponse>(product);
     }
 
