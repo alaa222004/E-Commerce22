@@ -1,4 +1,5 @@
 ﻿
+using E_Commerce.Persistence.AuthContext;
 using E_Commerce.Persistence.DbInitializers;
 using E_Commerce.Persistence.Repositories;
 using E_Commerce.Persistence.Services;
@@ -13,6 +14,11 @@ public static class persistenceServiceExtensions
 {
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddDbContext<AuthContext.AuthDbContext>(options=>
+        {
+            options.UseSqlServer(configuration.GetConnectionString("AuthConnection"));
+        }
+        );
         services.AddScoped<ICashService, CashService>();
         services.AddScoped<IBasketRepository, BasketRepository>();
         services.AddSingleton<IConnectionMultiplexer>(cfg=>
